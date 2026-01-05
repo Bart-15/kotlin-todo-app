@@ -58,7 +58,7 @@ fun TodoInput(
 
         Button(
             onClick = {
-                viewModel.addTodo(text)
+                viewModel.addTodo(text.trim())
                 text = ""
             },
             enabled = text.isNotBlank(),
