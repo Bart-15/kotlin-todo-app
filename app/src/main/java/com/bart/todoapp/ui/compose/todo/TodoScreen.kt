@@ -21,6 +21,7 @@ fun TodoScreen(
     viewModel: TodoViewModel = viewModel(),
     modifier: Modifier = Modifier
 ){
+    val todos = viewModel.todos
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -35,6 +36,12 @@ fun TodoScreen(
         )
 
         TodoInput()
+
+        TodoList(
+            todos = todos,
+            onToggle = viewModel::toggleTodo,
+            onDelete = viewModel::deleteTodo
+        )
     }
 }
 
