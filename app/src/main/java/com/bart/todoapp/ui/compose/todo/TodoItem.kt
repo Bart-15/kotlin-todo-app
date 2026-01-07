@@ -11,12 +11,12 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -25,6 +25,7 @@ import com.bart.todoapp.ui.theme.TodoAppTheme
 
 @Composable
 fun TodoItem(
+    modifier: Modifier = Modifier,
     todo: Todo,
     onToggle: () -> Unit,
     onDelete: () -> Unit,
@@ -34,7 +35,7 @@ fun TodoItem(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
-            .background(Color(0xFFF5F5F5))
+            .background(MaterialTheme.colorScheme.secondaryContainer)
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically
     ){
@@ -52,8 +53,7 @@ fun TodoItem(
         )
 
         IconButton(onClick = onDelete, colors = IconButtonDefaults.iconButtonColors(
-            contentColor = Color.White,
-            containerColor = Color.Red
+            contentColor = MaterialTheme.colorScheme.error
         )) {
             Icon(
                 imageVector = Icons.Default.Delete,
