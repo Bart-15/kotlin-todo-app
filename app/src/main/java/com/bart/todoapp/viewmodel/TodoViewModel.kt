@@ -16,20 +16,13 @@ class TodoViewModel: ViewModel() {
     }
 
     fun toggleTodo(id: String){
-        val index = todos.indexOfFirst { it.id == id }
-
-        if(index != 1){
-            val todo = _todos[index]
-
-            _todos[index] = todo.copy(isDone = !todo.isDone)
+        _todos.replaceAll { todo ->
+            if (todo.id == id) todo.copy(isDone = !todo.isDone)
+            else todo
         }
     }
 
     fun deleteTodo(id: String){
-        val index = todos.indexOfFirst { it.id == id }
-
-        if(index != 1){
-            _todos.removeAt(index)
-        }
+        _todos.removeAll { it.id == id }
     }
 }
