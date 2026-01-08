@@ -7,22 +7,28 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bart.todoapp.data.TodoRepository
 import com.bart.todoapp.ui.compose.todo.TodoScreen
 import com.bart.todoapp.ui.theme.TodoAppTheme
+import com.bart.todoapp.viewmodel.TodoViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Create the repository
+        val repository = TodoRepository(applicationContext)
+        
         enableEdgeToEdge()
         setContent {
             TodoAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     TodoScreen(
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier.padding(innerPadding),
+                        todoRepository = repository
                     )
                 }
             }

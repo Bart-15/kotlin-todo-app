@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "com.bart.todoapp.proto";
+option java_multiple_files = true;
+
+// Single Todo item
+message TodoProto {
+  string id = 1;
+  string title = 2;
+  bool is_done = 3;
+}
+
+// Collection of Todo items
+message TodoListProto {
+  repeated TodoProto todos = 1;
+}
