@@ -20,8 +20,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bart.todoapp.viewmodel.TodoViewModel
 import androidx.compose.ui.unit.dp
 import com.bart.todoapp.R
 import com.bart.todoapp.ui.theme.TodoAppTheme
@@ -29,7 +27,7 @@ import com.bart.todoapp.ui.theme.TodoAppTheme
 
 @Composable
 fun TodoInput(
-    viewModel: TodoViewModel = viewModel()
+    onAddTodo: (String) -> Unit = {}
 ){
 
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -61,7 +59,7 @@ fun TodoInput(
 
         Button(
             onClick = {
-                viewModel.addTodo(text.trim())
+                onAddTodo(text.trim())
                 text = ""
                 keyboardController?.hide()
             },
@@ -82,4 +80,3 @@ fun TodoInputPreview(){
         TodoInput()
     }
 }
-
